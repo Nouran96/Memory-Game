@@ -65,10 +65,10 @@ h1 {
     text-align: center;
 }
 
-/* TODO: Use this is Js by clicking not hovering*/
+/* TODO: Use this is Js by clicking not hovering
 .card:hover {
     transform: rotateY(180deg);
-}
+} */
 
 /* Front and Back sides of Card */
 
