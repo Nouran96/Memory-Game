@@ -34,6 +34,10 @@ h1 {
     width: 100%;
 }
 
+.bold {
+    font-weight: bold;
+}
+
 .main-container {
     width: 100%;
     margin: 10px auto 30px;
@@ -80,6 +84,12 @@ h1 {
     border-radius: 7px;
     font-weight: bold;
     cursor: pointer;
+}
+
+/* Timer */
+
+.timerDiv {
+    text-align: center;
 }
 
 /* Card Containers */
