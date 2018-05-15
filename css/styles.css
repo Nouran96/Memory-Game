@@ -1,0 +1,70 @@
+*{
+    box-sizing: border-box;
+}
+
+body {
+    perspective: 1200px;
+}
+
+.main-container {
+    width: 70%;
+    margin: 30px auto;
+    background: linear-gradient(#6ba8b9, #aaa, #cc3e5b);
+    border-radius: 7px;
+    box-shadow: 0px 6px 10px #dcdada;
+}
+
+.cards-container {
+    width: 80%;
+    margin: auto;
+    padding: 15% 1% 6%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card{
+    width: 21%;
+    margin: 2%;
+    height: 95px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform .3s ease-in;
+    text-align: center;
+}
+
+/* TODO: Use this is Js by clicking not hovering*/
+.card:hover {
+    transform: rotateY(180deg)
+}
+
+ .card > div {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+ }
+
+.card .front {
+    z-index: 2;
+    backface-visibility: hidden;
+    content: '';
+    height: 95px;
+    background-color: #164063e0;
+    border-radius: 7px;
+}
+
+.card .back {
+    z-index: 1;
+    height: 95px;
+    border-radius: 7px;
+    background-color: #c71a3c;
+    backface-visibility: hidden;
+    transform: rotateY(180deg);
+}
+
+.card .back i {
+    font-size: 2em;
+    display: block;
+    padding-top: 30%;
+    color: #fff;
+}
