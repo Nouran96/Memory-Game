@@ -6,6 +6,7 @@
 
 body {
     perspective: 1200px;
+    font-family: Arial, Helvetica, sans-serif;
     /* height: 100vh;
     display: flex;
     flex-direction: column;
@@ -13,8 +14,6 @@ body {
 }
 
 h1 {
-    font-family: Arial, Helvetica, sans-serif;
-    /* font-size: 1.5em; */
     font-size: 1.3em;
     text-align: center;
     margin-top: 1em;
@@ -35,15 +34,55 @@ h1 {
     width: 100%;
 }
 
-/* Card Containers */
-
 .main-container {
     width: 100%;
     margin: 10px auto 30px;
     background: linear-gradient(#6ba8b9, #aaa, #cc3e5b);
     border-radius: 7px;
     box-shadow: 0px 6px 10px #dcdada;
+    position: relative;
 }
+
+.hidden {
+    display: none !important;
+}
+
+/* Start Screen */
+
+.start-screen {
+    position: absolute;
+    background-color: rgba(255, 255, 255, .7);
+    top: 0;
+    left: 0;
+    z-index: 3;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.start-screen h2 {
+    color: #e91e63;
+    font-size: 1.6em;
+}
+
+.start-screen button {
+    display: inline-block;
+    background-color: #164063e0;
+    color: #fff;
+    width: 15%;
+    margin-left: 43%;
+    font-size: 1em;
+    padding: 10px 0;
+    border: transparent;
+    border-radius: 7px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Card Containers */
 
 .cards-container {
     width: 95%;
@@ -63,6 +102,7 @@ h1 {
     transform-style: preserve-3d;
     transition: transform .3s ease-in;
     text-align: center;
+    cursor: pointer;
 }
 
 /* TODO: Use this is Js by clicking not hovering
