@@ -43,6 +43,7 @@ function arrangeCards(array) {
 // Rotating the cards to reveal the images
 function revealCard(card) {
     card.classList.add('open');
+    card.removeEventListener('click', countMoves);
 }
 
 // See if the cards match and if they don't rotate them back
@@ -93,6 +94,7 @@ function countMoves() {
     movesCounter++;
 }
 
+// Show the end screen div with info about time taken to finish the game
 function endGame() {
     const p = document.createElement('p');
     clearInterval(interval);
@@ -103,8 +105,15 @@ function endGame() {
     playAgainBtn.addEventListener('click', playAgain);
 }
 
+// Restart the game
 function playAgain() {
-
+    endScreen.classList.toggle('hidden');
+    for(let card of cards){
+        card.classList.remove('open');
+        card.classList.remove('match');
+    }
+    shuffle(cardsHtml);
+    arrangeCards(cardsHtml);
 }
 
 // Global Declarations
