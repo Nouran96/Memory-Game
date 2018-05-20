@@ -106,6 +106,7 @@ function countMoves() {
 
 // Show the end screen div with info about time taken to finish the game
 function endGame() {
+    const endStars = stars.cloneNode(true);
     clearInterval(interval);
     if(timer.textContent < 30){
         message.textContent = 'Wow .. That was fast!!';
@@ -118,7 +119,8 @@ function endGame() {
     }
     p.innerHTML = `You finished in ${timer.textContent} seconds`;
     endScreen.insertBefore(p, playAgainBtn);
-    endScreen.insertBefore(message, p);
+    endScreen.insertBefore(endStars, p);
+    endScreen.insertBefore(message, endStars);
     endScreen.classList.toggle('hidden');
 
     playAgainBtn.addEventListener('click', playAgain);
