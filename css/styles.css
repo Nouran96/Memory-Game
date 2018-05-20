@@ -53,7 +53,14 @@ h1 {
 
 .open {
     transform: rotateY(180deg);
-    cursor: default;
+}
+
+.match {
+    cursor: default !important;
+}
+
+.match > .back {
+    background-color: #c55374 !important;
 }
 
 /* Start Screen */

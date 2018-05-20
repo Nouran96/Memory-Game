@@ -41,25 +41,32 @@ function arrangeCards(array) {
 }
 
 function revealCard(card) {
-    card.classList.toggle('open');
-    // cardsClass.push(card.classList[1]);
-    // cardsShown.push(card);
-
-    // if(cardsClass.length === 2){
-    //     compareCards();
-    // }
+    card.classList.add('open');
 }
 
 function matchCards(card) {
     openCards.push(card);
     if(openCards.length === 2){
         if(openCards[0].classList.contains(openCards[1].classList[1])){
-            console.log('match');
+            keepOpen(openCards);
         }
         else{
-            console.log('not match');
+            setTimeout(function() {
+                openCards.forEach(card => {
+                    card.classList.remove('open');
+                })
+                openCards = [];
+            }, 500);
         }
     }
+}
+
+function keepOpen(array) {
+    array.forEach(card => {
+        card.removeEventListener('click', revealCard);
+        card.classList.add('match');
+    });
+    openCards = [];
 }
 
 // function compareCards() {
