@@ -61,6 +61,9 @@ function matchCards(card) {
             }, 500);
         }
         countMoves();
+        if(matched === cardsHtml.length / 2){
+            endGame();
+        }
     }
 }
 
@@ -71,17 +74,37 @@ function keepOpen(array) {
         card.classList.add('match');
     });
     openCards = [];
+    matched++;
 }
 
+// Increment moves counter and the star ratings
 function countMoves() {
     moves.textContent = movesCounter;
-    movesCounter++;
-    if(movesCounter === 20){
+    if(movesCounter === 10){
         // Two stars Rating
+        stars.lastElementChild.classList.remove('fas');
+        stars.lastElementChild.classList.add('far');
     }
-    else if (movesCounter === 25){
+    else if (movesCounter === 15){
         // One star Rating
+        stars.children[1].classList.remove('fas');
+        stars.children[1].classList.add('far');
     }
+    movesCounter++;
+}
+
+function endGame() {
+    const p = document.createElement('p');
+    clearInterval(interval);
+    p.innerHTML = `You finished in ${timer.textContent} seconds`;
+    endScreen.insertBefore(p, playAgainBtn);
+    endScreen.classList.toggle('hidden');
+
+    playAgainBtn.addEventListener('click', playAgain);
+}
+
+function playAgain() {
+
 }
 
 // Global Declarations
@@ -91,26 +114,29 @@ const startScreen = document.querySelector('.start-screen'),
     timer = document.querySelector('#timer'),
     cards = document.querySelectorAll('.card'),
     cardsContainer = document.querySelector('.cards-container'),
-    moves = document.querySelector('.counter');
+    moves = document.querySelector('.counter'),
+    stars = document.querySelector('.stars'),
+    endScreen = document.querySelector('.end-screen'),
+    playAgainBtn = document.querySelector('#play-again');
 
 let sec = 0,
-    cardsClass = [],
+    interval,
+    cardsHtml = [],
     openCards = [],
-    movesCounter = 1;
+    movesCounter = 1,
+    matched = 0;
 
 // Adding a click event for the start button to remove screen and start timer
 startBtn.addEventListener('click', function() {
-    let interval;
     startScreen.classList.add('hidden');
     interval = setInterval(timerCount, 1000);
-    shuffle(cardsClass);
-    arrangeCards(cardsClass);
+    shuffle(cardsHtml);
+    arrangeCards(cardsHtml);
 });
 
 // Adding a click event for every card to reveal its content
 for(let card of cards){
-    // cardsClass.push(card.classList[1]);
-    cardsClass.push(card);
+    cardsHtml.push(card);
     card.addEventListener('click', function() {
         revealCard(card);
         matchCards(card);
