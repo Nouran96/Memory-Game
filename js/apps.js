@@ -157,9 +157,11 @@ function playAgain() {
     endScreen.classList.add('hidden');
     movesCounter = 1;
     moves.textContent = movesCounter - 1;
-    sec = 0;
+    sec= 0;
     min = 0;
     matched = 0;
+    firstMinDigit = 0;
+    firstSecDigit = 0;
     seconds.textContent = `${firstSecDigit}${sec}`;
     minutes.textContent = `${firstMinDigit}${min}`;
     stars.lastElementChild.classList.remove('far');
