@@ -40,10 +40,20 @@ function arrangeCards(array) {
     cardsContainer.appendChild(docFragment);
 }
 
+function containerFunction(e) {
+    const card = e.currentTarget;
+    revealCard(card);
+}
+
 // Rotating the cards to reveal the images
 function revealCard(card) {
-    card.classList.add('open');
-    card.removeEventListener('click', countMoves);
+    card.classList.toggle('open');
+    if(card.classList.contains('open')){
+        matchCards(card);
+    }
+    else {
+        openCards = [];
+    }
 }
 
 // See if the cards match and if they don't rotate them back
@@ -63,7 +73,7 @@ function matchCards(card) {
         }
         countMoves();
         if(matched === cardsHtml.length / 2){
-            endGame();
+            setTimeout(endGame, 300);
         }
     }
 }
@@ -71,7 +81,7 @@ function matchCards(card) {
 // If the cards match keep them open
 function keepOpen(array) {
     array.forEach(card => {
-        card.removeEventListener('click', revealCard);
+        card.removeEventListener('click', containerFunction);
         card.classList.add('match');
     });
     openCards = [];
@@ -96,7 +106,6 @@ function countMoves() {
 
 // Show the end screen div with info about time taken to finish the game
 function endGame() {
-    const p = document.createElement('p');
     clearInterval(interval);
     p.innerHTML = `You finished in ${timer.textContent} seconds`;
     endScreen.insertBefore(p, playAgainBtn);
@@ -111,7 +120,19 @@ function playAgain() {
     for(let card of cards){
         card.classList.remove('open');
         card.classList.remove('match');
+        card.addEventListener('click', containerFunction);
     }
+    movesCounter = 1;
+    moves.textContent = movesCounter - 1;
+    sec = 0;
+    timer.textContent = sec;
+    matched = 0;
+    stars.lastElementChild.classList.remove('far');
+    stars.lastElementChild.classList.add('fas');
+    stars.children[1].classList.remove('far');
+    stars.children[1].classList.add('fas');
+    p.parentElement.removeChild(p);
+    interval = setInterval(timerCount, 1000);
     shuffle(cardsHtml);
     arrangeCards(cardsHtml);
 }
@@ -126,7 +147,8 @@ const startScreen = document.querySelector('.start-screen'),
     moves = document.querySelector('.counter'),
     stars = document.querySelector('.stars'),
     endScreen = document.querySelector('.end-screen'),
-    playAgainBtn = document.querySelector('#play-again');
+    playAgainBtn = document.querySelector('#play-again'),
+    p = document.createElement('p');;
 
 let sec = 0,
     interval,
@@ -146,11 +168,9 @@ startBtn.addEventListener('click', function() {
 // Adding a click event for every card to reveal its content
 for(let card of cards){
     cardsHtml.push(card);
-    card.addEventListener('click', function() {
-        revealCard(card);
-        matchCards(card);
-    });
+    // card.addEventListener('click', function() {
+    //     revealCard(card);
+    //     // matchCards(card);
+    // });
+    card.addEventListener('click', containerFunction); // Container Function to be able to remove the eventListener
 }
-
-
-

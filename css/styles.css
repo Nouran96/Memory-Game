@@ -7,10 +7,6 @@
 body {
     perspective: 1200px;
     font-family: Arial, Helvetica, sans-serif;
-    /* height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center; */
 }
 
 h1 {
