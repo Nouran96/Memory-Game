@@ -31,6 +31,11 @@ function timerCount() {
     return sec;
 }
 
+function startTimer() {
+    if(interval === undefined){
+        interval = setInterval(timerCount, 1000);
+    }
+}
 // Adding Shuffles Cards to deck
 function arrangeCards(array) {
     const docFragment = document.createDocumentFragment();
@@ -42,6 +47,7 @@ function arrangeCards(array) {
 
 function containerFunction(e) {
     const card = e.currentTarget;
+    startTimer();
     revealCard(card);
 }
 
@@ -109,6 +115,7 @@ function endGame() {
     endStars.innerHTML = '';
     endStars = stars.cloneNode(true);
     clearInterval(interval);
+    interval = undefined;
     if(timer.textContent < 30){
         message.textContent = 'Wow .. That was fast!!';
     }
@@ -130,11 +137,6 @@ function endGame() {
 // Restart the game
 function playAgain() {
     endScreen.classList.add('hidden');
-    for(let card of cards){
-        card.classList.remove('open');
-        card.classList.remove('match');
-        card.addEventListener('click', containerFunction);
-    }
     movesCounter = 1;
     moves.textContent = movesCounter - 1;
     sec = 0;
@@ -145,9 +147,13 @@ function playAgain() {
     stars.children[1].classList.remove('far');
     stars.children[1].classList.add('fas');
     p.parentElement.removeChild(p);
-    interval = setInterval(timerCount, 1000);
     shuffle(cardsHtml);
     arrangeCards(cardsHtml);
+    for (let card of cards) {
+        card.classList.remove('open');
+        card.classList.remove('match');
+        card.addEventListener('click', containerFunction);
+    }
 }
 
 // Global Declarations
@@ -176,12 +182,14 @@ let sec = 0,
 // Adding a click event for the start button to remove screen and start timer
 startBtn.addEventListener('click', function() {
     startScreen.classList.add('hidden');
-    interval = setInterval(timerCount, 1000);
     shuffle(cardsHtml);
     arrangeCards(cardsHtml);
 });
 
-reloadBtn.addEventListener('click', playAgain);
+reloadBtn.addEventListener('click', function() {
+    endGame();
+    playAgain();
+});
 
 // Adding a click event for every card to reveal its content
 for(let card of cards){
