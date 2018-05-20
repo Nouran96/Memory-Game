@@ -51,6 +51,10 @@ h1 {
     display: none !important;
 }
 
+.transform {
+    transform: rotateY(180deg);
+}
+
 /* Start Screen */
 
 .start-screen {
@@ -114,11 +118,6 @@ h1 {
     text-align: center;
     cursor: pointer;
 }
-
-/* TODO: Use this is Js by clicking not hovering
-.card:hover {
-    transform: rotateY(180deg);
-} */
 
 /* Front and Back sides of Card */
 
