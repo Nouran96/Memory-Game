@@ -85,21 +85,21 @@ function revealCard(card) {
 
 // See if the cards match and if they don't rotate them back
 function matchCards(card) {
-        if(openCards[0].classList.contains(openCards[1].classList[1])){
-            keepOpen(openCards);
-        }
-        else{
-            setTimeout(function() {
-                openCards.forEach(card => {
-                    card.classList.remove('open');
-                })
-                openCards = [];
-            }, 500);
-        }
-        countMoves();
-        if(matched === cardsHtml.length / 2){
-            setTimeout(endGame, 300);
-        }
+    if(openCards[0].classList.contains(openCards[1].classList[1])){
+        keepOpen(openCards);
+    }
+    else{
+        setTimeout(function() {
+            openCards.forEach(card => {
+                card.classList.remove('open');
+            })
+            openCards = [];
+        }, 500);
+    }
+    countMoves();
+    if(matched === cardsHtml.length / 2){
+        setTimeout(endGame, 300);
+    }
 }
 
 // If the cards match keep them open
@@ -143,7 +143,7 @@ function endGame() {
     else {
         message.textContent = 'You could do better';
     }
-    p.innerHTML = `You finished in ${timer.textContent}`;
+    p.innerHTML = `You finished in ${timer.textContent} with ${movesCounter - 1} moves`;
     endScreen.insertBefore(p, playAgainBtn);
     endScreen.insertBefore(endStars, p);
     endScreen.insertBefore(message, endStars);
