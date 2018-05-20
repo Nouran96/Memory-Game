@@ -51,8 +51,9 @@ h1 {
     display: none !important;
 }
 
-.transform {
+.open {
     transform: rotateY(180deg);
+    cursor: default;
 }
 
 /* Start Screen */
