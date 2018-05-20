@@ -110,6 +110,12 @@ h1 {
     text-align: center;
 }
 
+.timerDiv p .reload {
+    display: inline-block;
+    margin-left: 7%;
+    cursor: pointer;
+}
+
 /* Card Containers */
 
 .cards-container {

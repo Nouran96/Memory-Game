@@ -121,14 +121,14 @@ function endGame() {
     endScreen.insertBefore(p, playAgainBtn);
     endScreen.insertBefore(endStars, p);
     endScreen.insertBefore(message, endStars);
-    endScreen.classList.toggle('hidden');
+    endScreen.classList.remove('hidden');
 
     playAgainBtn.addEventListener('click', playAgain);
 }
 
 // Restart the game
 function playAgain() {
-    endScreen.classList.toggle('hidden');
+    endScreen.classList.add('hidden');
     for(let card of cards){
         card.classList.remove('open');
         card.classList.remove('match');
@@ -161,7 +161,8 @@ const startScreen = document.querySelector('.start-screen'),
     endScreen = document.querySelector('.end-screen'),
     playAgainBtn = document.querySelector('#play-again'),
     p = document.createElement('p'),
-    message = document.createElement('h2');
+    message = document.createElement('h2'),
+    reloadBtn = document.querySelector('.reload');
 
 let sec = 0,
     interval,
@@ -178,12 +179,10 @@ startBtn.addEventListener('click', function() {
     arrangeCards(cardsHtml);
 });
 
+reloadBtn.addEventListener('click', playAgain);
+
 // Adding a click event for every card to reveal its content
 for(let card of cards){
     cardsHtml.push(card);
-    // card.addEventListener('click', function() {
-    //     revealCard(card);
-    //     // matchCards(card);
-    // });
     card.addEventListener('click', containerFunction); // Container Function to be able to remove the eventListener
 }
