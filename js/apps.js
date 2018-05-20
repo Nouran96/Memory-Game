@@ -134,10 +134,10 @@ function endGame() {
     endStars = stars.cloneNode(true);
     clearInterval(interval);
     interval = undefined;
-    if(timer.textContent < 30){
-        message.textContent = 'Wow .. That was fast!!';
+    if(moves.textContent <= 18){
+        message.textContent = 'Wow .. Great Job!!';
     }
-    else if (timer.textContent < 50) {
+    else if (moves.textContent <= 25) {
         message.textContent = 'Good Job';
     }
     else {
