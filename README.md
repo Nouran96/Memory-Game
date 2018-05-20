@@ -2,15 +2,15 @@
 
 This is a matching memory game that tests your memory by how long do you take to finish it. So the longer you take, well the more you need to train your memory.
 
-# Usage
+### _Usage_
 
 When you press _Play_, the game starts. You should click any two cards to see the symbols underneath. If they have the same symbol, they will match. Otherwise, they will flip back.
 
-# Goal of the game
+### _Goal of the game_
 
 Try to finish the game in the least time possible and concentrate very well.
 
-# License
+### _License_
 
 MIT License
 
