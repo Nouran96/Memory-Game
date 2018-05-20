@@ -91,12 +91,12 @@ function keepOpen(array) {
 // Increment moves counter and the star ratings
 function countMoves() {
     moves.textContent = movesCounter;
-    if(movesCounter === 10){
+    if(movesCounter === 15){
         // Two stars Rating
         stars.lastElementChild.classList.remove('fas');
         stars.lastElementChild.classList.add('far');
     }
-    else if (movesCounter === 15){
+    else if (movesCounter === 20){
         // One star Rating
         stars.children[1].classList.remove('fas');
         stars.children[1].classList.add('far');
@@ -106,7 +106,8 @@ function countMoves() {
 
 // Show the end screen div with info about time taken to finish the game
 function endGame() {
-    const endStars = stars.cloneNode(true);
+    endStars.innerHTML = '';
+    endStars = stars.cloneNode(true);
     clearInterval(interval);
     if(timer.textContent < 30){
         message.textContent = 'Wow .. That was fast!!';
@@ -169,7 +170,8 @@ let sec = 0,
     cardsHtml = [],
     openCards = [],
     movesCounter = 1,
-    matched = 0;
+    matched = 0,
+    endStars = stars.innerHTML;
 
 // Adding a click event for the start button to remove screen and start timer
 startBtn.addEventListener('click', function() {
