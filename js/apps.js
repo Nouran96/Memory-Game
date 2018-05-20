@@ -68,19 +68,23 @@ function containerFunction(e) {
 
 // Rotating the cards to reveal the images
 function revealCard(card) {
-    card.classList.toggle('open');
-    if(card.classList.contains('open')){
-        matchCards(card);
+    card.classList.add('open');
+    openCards.push(card);
+    if(openCards.length === 2){
+        // Check if the same card is being clicked more than once
+        if(openCards[0] === openCards[1]){
+            openCards.pop();
+            return false;
+        }
+        else{
+            matchCards(card);
+        }
     }
-    else {
-        openCards = [];
-    }
+    return true;
 }
 
 // See if the cards match and if they don't rotate them back
 function matchCards(card) {
-    openCards.push(card);
-    if(openCards.length === 2){
         if(openCards[0].classList.contains(openCards[1].classList[1])){
             keepOpen(openCards);
         }
@@ -96,7 +100,6 @@ function matchCards(card) {
         if(matched === cardsHtml.length / 2){
             setTimeout(endGame, 300);
         }
-    }
 }
 
 // If the cards match keep them open
@@ -196,7 +199,8 @@ let sec = 0,
     openCards = [],
     movesCounter = 1,
     matched = 0,
-    endStars = stars.innerHTML;
+    endStars = stars.innerHTML,
+    index;
 
 // Adding a click event for the start button to remove screen and start timer
 startBtn.addEventListener('click', function() {
