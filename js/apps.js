@@ -107,8 +107,18 @@ function countMoves() {
 // Show the end screen div with info about time taken to finish the game
 function endGame() {
     clearInterval(interval);
+    if(timer.textContent < 30){
+        message.textContent = 'Wow .. That was fast!!';
+    }
+    else if (timer.textContent < 50) {
+        message.textContent = 'Good Job';
+    }
+    else {
+        message.textContent = 'You could do better';
+    }
     p.innerHTML = `You finished in ${timer.textContent} seconds`;
     endScreen.insertBefore(p, playAgainBtn);
+    endScreen.insertBefore(message, p);
     endScreen.classList.toggle('hidden');
 
     playAgainBtn.addEventListener('click', playAgain);
@@ -148,7 +158,8 @@ const startScreen = document.querySelector('.start-screen'),
     stars = document.querySelector('.stars'),
     endScreen = document.querySelector('.end-screen'),
     playAgainBtn = document.querySelector('#play-again'),
-    p = document.createElement('p');;
+    p = document.createElement('p'),
+    message = document.createElement('h2');
 
 let sec = 0,
     interval,
