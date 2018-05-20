@@ -40,10 +40,12 @@ function arrangeCards(array) {
     cardsContainer.appendChild(docFragment);
 }
 
+// Rotating the cards to reveal the images
 function revealCard(card) {
     card.classList.add('open');
 }
 
+// See if the cards match and if they don't rotate them back
 function matchCards(card) {
     openCards.push(card);
     if(openCards.length === 2){
@@ -58,9 +60,11 @@ function matchCards(card) {
                 openCards = [];
             }, 500);
         }
+        countMoves();
     }
 }
 
+// If the cards match keep them open
 function keepOpen(array) {
     array.forEach(card => {
         card.removeEventListener('click', revealCard);
@@ -69,18 +73,16 @@ function keepOpen(array) {
     openCards = [];
 }
 
-// function compareCards() {
-//         if (cardsClass[0] === cardsClass[1]) {
-//         }
-//         else {
-//             cardsShown.forEach(function (card) {
-//                 // card.querySelector('.back').style.backgroundColor = 'black';
-//                 card.classList.toggle('transform');
-//             });
-//         }
-//         cardsClass = [];
-//         cardsShown = [];
-// }
+function countMoves() {
+    moves.textContent = movesCounter;
+    movesCounter++;
+    if(movesCounter === 20){
+        // Two stars Rating
+    }
+    else if (movesCounter === 25){
+        // One star Rating
+    }
+}
 
 // Global Declarations
 const startScreen = document.querySelector('.start-screen'),
@@ -88,11 +90,13 @@ const startScreen = document.querySelector('.start-screen'),
     timerDiv = document.querySelector('.timerDiv'),
     timer = document.querySelector('#timer'),
     cards = document.querySelectorAll('.card'),
-    cardsContainer = document.querySelector('.cards-container');
+    cardsContainer = document.querySelector('.cards-container'),
+    moves = document.querySelector('.counter');
 
 let sec = 0,
     cardsClass = [],
-    openCards = [];
+    openCards = [],
+    movesCounter = 1;
 
 // Adding a click event for the start button to remove screen and start timer
 startBtn.addEventListener('click', function() {
