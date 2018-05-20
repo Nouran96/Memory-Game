@@ -26,11 +26,26 @@ function shuffle(array) {
 
 // Increasing the timer by one second each second
 function timerCount() {
-    sec++;
-    timer.textContent = sec;
-    return sec;
+    const seconds = document.querySelector('#seconds'),
+        minutes = document.querySelector('#minutes');
+
+    seconds.textContent = `${firstSecDigit}${++sec}`;
+
+    // Reset the seconds and increments the minutes
+    if(seconds.textContent === '60'){
+        firstSecDigit = 0;
+        sec = -1;
+        seconds.textContent = `${firstSecDigit}${++sec}`;
+        minutes.textContent = `${firstMinDigit}${++min}`;
+    }
+    
+    if(sec === 9){
+        firstSecDigit++;
+        sec = -1;
+    }
 }
 
+// Start the timer once the first card only is clicked
 function startTimer() {
     if(interval === undefined){
         interval = setInterval(timerCount, 1000);
@@ -125,7 +140,7 @@ function endGame() {
     else {
         message.textContent = 'You could do better';
     }
-    p.innerHTML = `You finished in ${timer.textContent} seconds`;
+    p.innerHTML = `You finished in ${timer.textContent}`;
     endScreen.insertBefore(p, playAgainBtn);
     endScreen.insertBefore(endStars, p);
     endScreen.insertBefore(message, endStars);
@@ -172,6 +187,10 @@ const startScreen = document.querySelector('.start-screen'),
     reloadBtn = document.querySelector('.reload');
 
 let sec = 0,
+    min = 0,
+    // FirstDigit is the first 0 in 00 of timer in seconds and minutes parts
+    firstSecDigit = 0,
+    firstMinDigit = 0,
     interval,
     cardsHtml = [],
     openCards = [],
