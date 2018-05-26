@@ -10,6 +10,22 @@ When you press _Play_, the game starts. You should click any two cards to see th
 
 Try to finish the game in the least time possible and concentrate very well.
 
+### _Installing_
+
+You need to do the following steps:
+
+1. Download the zipped folder
+2. Unzip it 
+3. Open the index.html file in your browser
+4. Have a good time playing it
+
+### _Built With_
+
+* HTML --> For the structure of the game
+* CSS --> For designing the game
+* FontAwesome library --> Using the icons for the cards characters
+* JavaScript --> For interactivity and functionality of the game
+
 ### _License_
 
 MIT License
