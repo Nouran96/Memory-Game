@@ -10,6 +10,32 @@
  *   - add each card's HTML to the page
  */
 
+// Global Declarations
+const startScreen = document.querySelector('.start-screen'),
+    startBtn = document.querySelector('#play'),
+    timer = document.querySelector('#timer'),
+    cards = document.querySelectorAll('.card'),
+    cardsContainer = document.querySelector('.cards-container'),
+    moves = document.querySelector('.counter'),
+    stars = document.querySelector('.stars'),
+    endScreen = document.querySelector('.end-screen'),
+    playAgainBtn = document.querySelector('#play-again'),
+    p = document.createElement('p'),
+    message = document.createElement('h2'),
+    reloadBtn = document.querySelector('.reload');
+
+let sec = 0,
+    min = 0,
+    // FirstDigit is the first 0 in 00 of timer in seconds and minutes parts
+    firstSecDigit = 0,
+    firstMinDigit = 0,
+    interval,
+    cardsHtml = [],
+    openCards = [],
+    movesCounter = 1,
+    matched = 0,
+    endStars = stars.innerHTML;
+
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -77,14 +103,14 @@ function revealCard(card) {
             return false;
         }
         else{
-            matchCards(card);
+            checkMatch(card);
         }
     }
     return true;
 }
 
 // See if the cards match and if they don't rotate them back
-function matchCards(card) {
+function checkMatch(card) {
     if(openCards[0].classList.contains(openCards[1].classList[1])){
         keepOpen(openCards);
     }
@@ -177,34 +203,6 @@ function playAgain() {
         card.addEventListener('click', containerFunction);
     }
 }
-
-// Global Declarations
-const startScreen = document.querySelector('.start-screen'),
-    startBtn = document.querySelector('#play'),
-    timerDiv = document.querySelector('.timerDiv'),
-    timer = document.querySelector('#timer'),
-    cards = document.querySelectorAll('.card'),
-    cardsContainer = document.querySelector('.cards-container'),
-    moves = document.querySelector('.counter'),
-    stars = document.querySelector('.stars'),
-    endScreen = document.querySelector('.end-screen'),
-    playAgainBtn = document.querySelector('#play-again'),
-    p = document.createElement('p'),
-    message = document.createElement('h2'),
-    reloadBtn = document.querySelector('.reload');
-
-let sec = 0,
-    min = 0,
-    // FirstDigit is the first 0 in 00 of timer in seconds and minutes parts
-    firstSecDigit = 0,
-    firstMinDigit = 0,
-    interval,
-    cardsHtml = [],
-    openCards = [],
-    movesCounter = 1,
-    matched = 0,
-    endStars = stars.innerHTML,
-    index;
 
 // Adding a click event for the start button to remove screen and start timer
 startBtn.addEventListener('click', function() {
