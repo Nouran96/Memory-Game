@@ -69,6 +69,11 @@ function timerCount() {
         firstSecDigit++;
         sec = -1;
     }
+
+    if(min == 9) {
+        firstMinDigit++;
+        min = -1;
+    }
 }
 
 // Start the timer once the first card only is clicked
